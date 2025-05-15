@@ -16,4 +16,33 @@ __pycache__/
 
 # Log-Dateien
 *.log
-Ok
+
+# Umgebungs-/Konfigurationsdateien
+.env
+*.env
+
+# Modell-Dateien
+*.pkl
+*.joblib
+
+# Daten-Dateien
+*.csv
+*.xlsx
+*.xls
+
+# Backup-/Temp-Dateien
+*~
+*.bak
+*.swp
+*.tmp
+
+# PyCharm
+.idea/
+
+# Streamlit Cache
+.streamlit/
+
+# Coverage / Tests
+*.coverage
+htmlcov/
+coverage.xml

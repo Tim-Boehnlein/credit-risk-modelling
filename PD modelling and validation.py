@@ -68,3 +68,17 @@ cm = confusion_matrix(y, vorhersagen)
 ConfusionMatrixDisplay(cm).plot()
 plt.title(f'Confusion Matrix bei Cutoff {cutoff}')
 plt.show()
+
+# 5. Modell speichern mit Pickle
+import pickle
+
+# Nur das Modellobjekt speichern (koeffizientenbasiert, ohne statsmodels-Summary)
+modell_pickle = {
+    'params': ergebnis.params,  # Koeffizienten des Modells
+    'columns': X.columns        # Spaltennamen
+}
+
+with open('pd_model.pkl', 'wb') as file:   # Öffnen der Datei im Binärmodus
+    pickle.dump(modell_pickle, file)       # Speichern des Modells    
+
+print("Modell wurde gespeichert als pd_model.pkl")
