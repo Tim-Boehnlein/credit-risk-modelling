@@ -1,39 +1,55 @@
-# Credit Risk Modelling
+# Expected Loss Modell (EL) – Kreditrisikoanalyse
 
-Dieses Projekt beschäftigt sich mit der Modellierung und Validierung der **Probability of Default (PD)** im Rahmen des Kreditrisikomanagements.  
-Es nutzt zufällig generierte Kreditdaten und wendet statistische Methoden wie **logistische Regression** und **Maximum-Likelihood-Schätzung (MLE)** an.
+Dieses Projekt ist ein interaktives Dashboard zur Berechnung des **Expected Loss (EL)** auf Einzelkundenbasis. Der erwartete Verlust ergibt sich aus:
 
-## Inhalt
+$$
+\text{EL} = \text{PD} \times \text{LGD} \times \text{EAD}.
+$$
 
-- Datenimport und Vorverarbeitung
-- Schätzung der PD mittels logistischer Regression
-- Modellvalidierung mit ROC- und AUC-Analyse
-- Grafische Auswertung der Ergebnisse (Confusion Matrix)
-- Streamlit Dashboard zur PD-Berechnung 
+Dabei werden folgende Komponenten berücksichtigt:
 
-## Verwendete Tools 
+- **PD (Probability of Default):** geschätzt mittels logistischer Regression
+- **LGD (Loss Given Default):** Eingabe oder Annahme durch den Benutzer
+- **EAD (Exposure at Default):** basierend auf Kreditlinie und Annahmen zur Inanspruchnahme
 
-- Python 3.9+
-- pandas
-- numpy
-- matplotlib
-- seaborn
-- scikit-learn
-- statsmodels
-- Steramlit
+## Funktionen
 
-## Ausführen des Hauptprogramms
+- Modellbasierte Vorhersage der **PD**
+- Eingabemöglichkeiten für LGD und EAD
+- Berechnung und Anzeige des erwarteten Verlusts (EL)
+- Intuitive Benutzeroberfläche mit **Streamlit**
+- Modular aufgebaut und erweiterbar
 
-```bash
-python 'PD modelling and validation.py'
-```
+## Eingabeparameter (über Sidebar)
 
-## Ausführung des Dashboards
+- **Umsatz (€)** – numerischer Wert
+- **Kreditlinie (€)** – numerischer Wert
+- **Sicherheiten vorhanden?** – Ja/Nein
+- **Branche: Bau?** – Ja/Nein
+- **LGD (%)** – Verlustquote bei Ausfall (manuelle Eingabe)
+- **Konvertierungsfaktor (%)** – Anteil der Kreditlinie, der im Ausfall in Anspruch genommen wird
 
-1. Virtuelle Umgebung aktivieren  
-2. Modell vorbereiten (`pd_model.pkl`)  
-3. Dashboard starten:
+## Installation
 
-```bash
-streamlit run pd_dashboard.py
-```
+1. Projekt klonen:
+   ```bash
+   git clone https://github.com/dein-user/el-modell.git
+   cd el-model
+   ```
+
+2. Virtuelle Umgebung: 
+```bash 
+   python -m venv venv
+   source venv/bin/activate    # macOS/Linux
+   venv\Scripts\activate       # Windows
+   ```
+
+3. Abhängigkeiten installieren:
+```bash 
+   pip install -r requirements.txt
+   ```
+
+4. Dashboard starten:
+```bash 
+   streamlit run main_dashboard.py
+   ```
