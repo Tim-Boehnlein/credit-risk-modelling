@@ -51,5 +51,8 @@ Dabei werden folgende Komponenten berücksichtigt:
 
 4. Dashboard starten:
 ```bash 
-   streamlit run main_dashboard.py
+   streamlit run expected_loss_dashboard.py
    ```
+## Mögliche Erweiterung
+
+- Die Module ```lgd_model.py``` und ```ead_model.py``` schätzen den $LGD$ und die $EAD$ mittels linearer Regression und zufällig generierten Daten. Man kann diese auch noch in das interaktive Umfeld einbinden. Z.B. in dem dort csv.Dateien hochgeladen werden, welche als Trainingsdaten dienen, und zum Schluss der $EL$ ausgegeben wird.  

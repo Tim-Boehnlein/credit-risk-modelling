@@ -44,7 +44,7 @@ print(ergebnis.summary())   # Zusammenfassung des Modells
 # AUC ist die Fläche unter der ROC-Kurve, ein Maß für die Trennschärfe des Modells
 # Ein hoher AUC-Wert (nahe 1) zeigt eine gute Trennschärfe an, während ein Wert von 0.5 auf Zufall hinweist
 # Der Wert 0.5 muss aber nicht immer erreicht werden, da die ROC-Kurve auch unterhalb der Diagonalen liegen kann
-# Das hängt von der Verteilung der Daten ab und ist nicht immer ein Zeichen für ein schlechtes Modell
+# In diesem Fall sollte man versuchen zu erkennen, woran das liegt und beispeilsweise die Trainingsdaten verbessern
 wahrscheinlichkeiten = ergebnis.predict(X)                  # Vorhersage der Wahrscheinlichkeiten    
 fpr, tpr, schwellen = roc_curve(y, wahrscheinlichkeiten)    # Berechnung der ROC-Kurve 
 roc_auc = auc(fpr, tpr)
@@ -58,6 +58,7 @@ plt.title('ROC-Kurve für PD-Modell')
 plt.legend()
 plt.tight_layout()
 plt.show()
+# Ein anderes Maß für die Sensitivität wäre der KS-Wert, der die Differenz zwischen der kumulierten Verteilung der positiven und negativen Klassen anzeigt
 
 # 4. Confusion Matrix bei Cutoff 0.5
 # Die Confusion Matrix zeigt die Anzahl der True Positives (TP), False Positives (FP), True Negatives (TN) und False Negatives (FN)
