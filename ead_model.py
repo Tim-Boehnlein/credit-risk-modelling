@@ -27,7 +27,7 @@ df = pd.DataFrame({
 
 # 2. Daten fitten mittels linearer Regression
 X = df[['Kreditlinie', 'Nutzungshistorie', 'Branche_Kapitalintensiv']]
-X = sm.add_constant(X)  # Konstante hinzufügen, um den Achsenabschnitt zu berücksichtigen    
+X = sm.add_constant(X)  # Konstante hinzufügen, um den Achsenabschnitt zu schätzen, würde sonst auf 0 gesetzt werden 
 y = df['EAD']
 
 modell = sm.OLS(y, X)

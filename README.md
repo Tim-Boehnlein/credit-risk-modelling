@@ -12,9 +12,9 @@ Dabei werden folgende Komponenten berücksichtigt:
 - **LGD (Loss Given Default):** Eingabe oder Annahme durch den Benutzer
 - **EAD (Exposure at Default):** basierend auf Kreditlinie und Annahmen zur Inanspruchnahme
 
-## Funktionen
+## Funktionen im Dashboard
 
-- Modellbasierte Vorhersage der **PD**
+- Vorhersage der **PD** mittels logistischer Regression
 - Eingabemöglichkeiten für LGD und EAD
 - Berechnung und Anzeige des erwarteten Verlusts (EL)
 - Intuitive Benutzeroberfläche mit **Streamlit**
@@ -51,7 +51,7 @@ Dabei werden folgende Komponenten berücksichtigt:
 
 4. Dashboard starten:
 ```bash 
-   streamlit run expected_loss_dashboard.py
+   streamlit run el_dashboard.py
    ```
 ## Mögliche Erweiterung
 

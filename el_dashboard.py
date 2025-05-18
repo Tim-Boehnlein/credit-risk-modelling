@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import pickle
+import pickle # Zum serialisieren und deserialisieren von Python-Objekten, sichere Alternativen: json und joblib
 
 # Titel
 st.title("Credit Risk Dashboard: PD, LGD, EAD & Expected Loss")
@@ -10,8 +10,8 @@ st.title("Credit Risk Dashboard: PD, LGD, EAD & Expected Loss")
 with open('pd_model.pkl', 'rb') as file:
     modell_pickle = pickle.load(file)
 
-params = np.ravel(modell_pickle['params'])
-columns = modell_pickle['columns']
+params = np.ravel(modell_pickle['params']) # Umwandlung in 1D-Array
+columns = modell_pickle['columns'] 
 
 # --- 2. Benutzereingaben ---
 st.sidebar.header("Kundendaten eingeben")
