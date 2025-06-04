@@ -5,25 +5,32 @@ import matplotlib.pyplot as plt
 import statsmodels.api as sm
 import pickle
 
-# 1. Datengenerierung für LGD – in der Realität historische Workout-Daten
-np.random.seed(42)
-n = 1000
-kredithöhe = np.random.normal(200000, 40000, n)       # Ursprüngliche Kredithöhe
-sicherheitenwert = np.random.normal(100000, 30000, n) # Wert der Sicherheiten
-branche_risiko = np.random.binomial(1, 0.3, n)         # Risikoreiche Branche (z. B. Bau)
+# 1. Daten laden oder simulieren
+try:
+    df = pd.read_csv("lgd_daten.csv")
+    print("Daten wurden erfolgreich aus 'lgd_daten.csv' geladen.")
+except Exception as e:
+    print(f"Fehler beim Laden der Daten: {e}")
+    print("Zufällige Beispieldaten werden generiert.")
 
-# Simulierter LGD-Wert: Anteil des Kredits, der bei Ausfall verloren geht (zwischen 0 und 1)
-linear_lgd = 0.4 + 0.000002 * kredithöhe - 0.000003 * sicherheitenwert + 0.1 * branche_risiko
-lgd = np.clip(linear_lgd + np.random.normal(0, 0.05, n), 0, 1)  # LGD zwischen 0 und 1 begrenzen
+    np.random.seed(42)
+    n = 1000
+    kredithöhe = np.random.normal(200000, 40000, n)       # Ursprüngliche Kredithöhe
+    sicherheitenwert = np.random.normal(100000, 30000, n) # Wert der Sicherheiten
+    branche_risiko = np.random.binomial(1, 0.3, n)         # Risikoreiche Branche
 
-# DataFrame erstellen
-df = pd.DataFrame({
-    'Kredithöhe': kredithöhe,
-    'Sicherheitenwert': sicherheitenwert,
-    'Branche_Risiko': branche_risiko,
-    'LGD': lgd
-})
+    # Simulierter LGD-Wert
+    linear_lgd = 0.4 + 0.000002 * kredithöhe - 0.000003 * sicherheitenwert + 0.1 * branche_risiko
+    lgd = np.clip(linear_lgd + np.random.normal(0, 0.05, n), 0, 1)
 
+    # DataFrame erstellen
+    df = pd.DataFrame({
+        'Kredithöhe': kredithöhe,
+        'Sicherheitenwert': sicherheitenwert,
+        'Branche_Risiko': branche_risiko,
+        'LGD': lgd
+    })
+    
 # 2. Daten fitten mittels linearer Regression
 X = df[['Kredithöhe', 'Sicherheitenwert', 'Branche_Risiko']]
 X = sm.add_constant(X) # Konstante hinzufügen, um den Achsenabschnitt zu berücksichtigen    
